@@ -91,7 +91,22 @@ async function run() {
       const result = await craftcollection.deleteOne(query);
       res.send(result);
     })
+    // Data read form subcategory database
+    app.get('/subcategorylist', async (req, res) => {
+      const cursor = subcategorycollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    })
 
+    // Data read form subcategory database by id
+    app.get('/subcategorylist/:id', async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await subcategorycollection.findOne(query);
+      res.send(result);
+    })
+
+     
     
  
 
